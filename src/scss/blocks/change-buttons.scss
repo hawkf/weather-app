@@ -1,0 +1,25 @@
+.change-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 300px;
+  margin-bottom: 30px;
+}
+.change-buttons__item {
+  border: none;
+  color: $basic-white;
+  font-size: 25px;
+  background-color: $black-light;
+  margin: 0;
+  min-width: 100px;
+  border-radius: 20px;
+  padding: 5px;
+
+  &:hover {
+    background-color: $basic-black;
+  }
+
+  &--active {
+    background-color: $basic-black;
+  }
+}

@@ -1,7 +1,7 @@
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { AppRoute } from "../../utils/const";
-import DayWeatherMain from "../day-weather-main/day-weather-main";
-import { WeekWeatherMain } from "../week-weather-main/week-weather-main";
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { AppRoute } from '../../utils/const';
+import DayWeatherMain from '../day-weather-main/day-weather-main';
+import WeekWeatherMain from '../week-weather-main/week-weather-main';
 
 function App() {
   return (

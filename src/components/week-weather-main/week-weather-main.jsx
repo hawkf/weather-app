@@ -1,21 +1,81 @@
-import React from "react";
-import { LocationForm } from "../location-form/location-form";
-import { ResultInformationDay } from "../result-information-day/result-information-day";
+import React, { useEffect } from 'react';
+import LocationForm from '../location-form/location-form';
+import { ResultInformationDay } from '../result-information-day/result-information-day';
+import { connect } from 'react-redux';
+import { fetchCoordinates, fetchWeekWeather } from '../../store/api-actions';
+import { ChangeButtons } from '../change-buttons/change-buttons';
 
-const testArray = [1, 2, 3, 4, 5, 6, 7];
+export function WeekWeatherMain({
+  getCoordinates,
+  setWeekWeather,
+  locationName,
+  coordinates,
+  weekWeathers,
+  isDataUpdated,
+}) {
+  useEffect(() => {
+    if (!isDataUpdated && locationName !== '') {
+      getCoordinates(locationName);
+    }
+  }, [getCoordinates, locationName, isDataUpdated]);
 
-export function WeekWeatherMain() {
+  useEffect(() => {
+    if (
+      coordinates.lat !== null &&
+      coordinates.lon !== null &&
+      !isDataUpdated
+    ) {
+      setWeekWeather(coordinates);
+    }
+  }, [setWeekWeather, coordinates, isDataUpdated]);
+
+  if (weekWeathers == null) {
+    return (
+      <main className='main-page'>
+        <ChangeButtons isDay={false} />
+        <LocationForm />
+        <section className='result-information'></section>
+      </main>
+    );
+  }
+
   return (
     <main className='main-page'>
+      <ChangeButtons isDay={false} />
       <LocationForm />
       <section className='result-information'>
-        <h2 className='result-information__title'>Nigeria, NG</h2>
+        <h2 className='result-information__title'>{locationName}</h2>
         <ul className='result-information__list'>
-          {testArray.map((item) => {
-            return <ResultInformationDay key={item} />;
+          {weekWeathers.map((item, index) => {
+            return (
+              <ResultInformationDay
+                key={index}
+                temperature={item.temperature}
+                description={item.description}
+                date={item.date}
+              />
+            );
           })}
         </ul>
       </section>
     </main>
   );
 }
+
+const mapDispatchToProps = (dispatch) => ({
+  getCoordinates(locationName) {
+    dispatch(fetchCoordinates(locationName));
+  },
+  setWeekWeather(coordinates) {
+    dispatch(fetchWeekWeather(coordinates));
+  },
+});
+
+const mapStateToProps = (state) => ({
+  locationName: state.location,
+  coordinates: state.coordinates,
+  weekWeathers: state.weekWeathers,
+  isDataUpdated: state.isDataUpdated,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(WeekWeatherMain);

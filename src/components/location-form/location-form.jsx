@@ -5,8 +5,8 @@ import { ActionGenerator } from '../../store/action';
 
 const INPUT_DELAY = 2000;
 
-export function LocationForm({ setLocation }) {
-  const [locationName, setLocationName] = useState('');
+export function LocationForm({ setLocation, location }) {
+  const [locationName, setLocationName] = useState(location);
 
   const onChangeHandler = (evt) => {
     setLocationName(evt.currentTarget.value);
@@ -15,8 +15,10 @@ export function LocationForm({ setLocation }) {
   const debaunsedInputValue = useDebounce(locationName, INPUT_DELAY);
 
   useEffect(() => {
-    setLocation(debaunsedInputValue);
-  }, [debaunsedInputValue, setLocation]);
+    if (location !== debaunsedInputValue) {
+      setLocation(debaunsedInputValue);
+    }
+  }, [debaunsedInputValue, setLocation, location]);
 
   return (
     <form className='location-form'>
@@ -37,4 +39,8 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(null, mapDispatchToProps)(LocationForm);
+const mapStateToProps = (state) => ({
+  location: state.location,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LocationForm);

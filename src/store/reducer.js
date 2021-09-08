@@ -1,12 +1,14 @@
-import { ActionType } from "./action";
+import { ActionType } from './action';
 
 const initialState = {
-  location: "",
+  location: '',
   coordinates: {
     lat: null,
     lng: null,
   },
-  weekWeathers: [],
+  weekWeathers: null,
+  isLocationCorrect: false,
+  isDataUpdated: false,
 };
 
 export function reducer(state = initialState, action) {
@@ -15,6 +17,7 @@ export function reducer(state = initialState, action) {
       return {
         ...state,
         location: action.payload,
+        isDataUpdated: false,
       };
 
     case ActionType.SET_COORDINATES:
@@ -27,6 +30,11 @@ export function reducer(state = initialState, action) {
       return {
         ...state,
         weekWeathers: action.payload,
+      };
+    case ActionType.SET_IS_LOCATION_CORRECT:
+      return {
+        ...state,
+        isLocationCorrect: action.payload,
       };
     default:
       return state;

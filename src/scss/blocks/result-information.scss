@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: $font, "Arial", sans-serif;
+  font-family: $font, 'Arial', sans-serif;
 }
 
 .result-information__list {
@@ -38,6 +38,7 @@
   border-radius: 10px;
   margin-top: 0;
   margin-bottom: 20px;
+  margin-right: 10px;
 }
 
 .result-information__description {
