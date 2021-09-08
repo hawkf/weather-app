@@ -9,7 +9,12 @@ export function LocationForm({ setLocation, location }) {
   const [locationName, setLocationName] = useState(location);
 
   const onChangeHandler = (evt) => {
+    evt.preventDefault();
     setLocationName(evt.currentTarget.value);
+  };
+
+  const onSubmitHandler = (evt) => {
+    evt.preventDefault();
   };
 
   const debaunsedInputValue = useDebounce(locationName, INPUT_DELAY);
@@ -21,7 +26,7 @@ export function LocationForm({ setLocation, location }) {
   }, [debaunsedInputValue, setLocation, location]);
 
   return (
-    <form className='location-form'>
+    <form onSubmit={onSubmitHandler} className='location-form'>
       <input
         value={locationName}
         onChange={(evt) => onChangeHandler(evt)}

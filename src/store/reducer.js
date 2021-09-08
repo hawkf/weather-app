@@ -7,7 +7,7 @@ const initialState = {
     lng: null,
   },
   weekWeathers: null,
-  isLocationCorrect: false,
+  isLocationCorrect: true,
   isDataUpdated: false,
 };
 

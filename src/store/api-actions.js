@@ -1,6 +1,9 @@
 import { ActionGenerator } from './action';
 import { AppiRoute, API_KEY } from '../utils/const';
 import { weekWeatherAdapter } from '../utils/utils';
+import swal from 'sweetalert';
+
+const ERROR_MESSAGE = 'An error occurred while loading data';
 
 export const fetchCoordinates =
   (locationName) => (dispatch, _getState, api) => {
@@ -19,6 +22,11 @@ export const fetchCoordinates =
           })
         );
         dispatch(ActionGenerator.setIsLocationCorrect(true));
+        dispatch(ActionGenerator.setIsDataUpdated(false));
+      })
+      .catch((data) => {
+        dispatch(ActionGenerator.setIsLocationCorrect(false));
+        dispatch(ActionGenerator.setIsDataUpdated(true));
       });
   };
 
@@ -42,5 +50,6 @@ export const fetchWeekWeather =
           )
         );
         dispatch(ActionGenerator.setIsDataUpdated(true));
-      });
+      })
+      .catch(() => swal(ERROR_MESSAGE));
   };

@@ -4,8 +4,8 @@ import LocationForm from '../location-form/location-form';
 import { ResultInformationDay } from '../result-information-day/result-information-day';
 import { fetchCoordinates, fetchWeekWeather } from '../../store/api-actions';
 import { useEffect } from 'react';
-import dayjs from 'dayjs';
 import { ChangeButtons } from '../change-buttons/change-buttons';
+import { ActionGenerator } from '../../store/action';
 
 export function DayWeatherMain({
   getCoordinates,
@@ -14,6 +14,7 @@ export function DayWeatherMain({
   coordinates,
   weekWeathers,
   isDataUpdated,
+  isLocationCorrect,
 }) {
   useEffect(() => {
     if (locationName !== '' && !isDataUpdated) {
@@ -36,7 +37,9 @@ export function DayWeatherMain({
       <main className='main-page'>
         <ChangeButtons isDay={true} />
         <LocationForm />
-        <section className='result-information'></section>
+        <section className='result-information'>
+          {!isLocationCorrect && <p>Location not found</p>}
+        </section>
       </main>
     );
   }
@@ -61,6 +64,8 @@ export function DayWeatherMain({
 
 const mapDispatchToProps = (dispatch) => ({
   getCoordinates(locationName) {
+    dispatch(ActionGenerator.setCoordinates({ lat: null, lon: null }));
+    dispatch(ActionGenerator.setWeekWeathers(null));
     dispatch(fetchCoordinates(locationName));
   },
   setWeekWeather(coordinates) {
@@ -73,6 +78,7 @@ const mapStateToProps = (state) => ({
   coordinates: state.coordinates,
   weekWeathers: state.weekWeathers,
   isDataUpdated: state.isDataUpdated,
+  isLocationCorrect: state.isLocationCorrect,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DayWeatherMain);
