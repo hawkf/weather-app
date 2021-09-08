@@ -34,7 +34,7 @@ export function WeekWeatherMain({
   if (weekWeathers == null) {
     return (
       <main className='main-page'>
-        <ChangeButtons isDay={true} />
+        <ChangeButtons isDay={false} />
         <LocationForm />
         <section className='result-information'>
           {!isLocationCorrect && <p>Location not found</p>}
