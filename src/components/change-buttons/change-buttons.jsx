@@ -15,7 +15,7 @@ export function ChangeButtons({ isDay }) {
   return (
     <div className='change-buttons'>
       <button
-        class={`change-buttons__item ${
+        className={`change-buttons__item ${
           isDay ? `change-buttons__item--active` : ''
         }`}
         onClick={onDayButtonHandler}
@@ -23,7 +23,7 @@ export function ChangeButtons({ isDay }) {
         Day
       </button>
       <button
-        class={`change-buttons__item ${
+        className={`change-buttons__item ${
           !isDay ? `change-buttons__item--active` : ''
         }`}
         onClick={onWeekButtonHandler}
