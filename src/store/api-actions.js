@@ -22,7 +22,7 @@ export const fetchCoordinates =
           })
         );
         dispatch(ActionGenerator.setIsLocationCorrect(true));
-        dispatch(ActionGenerator.setIsDataUpdated(false));
+        dispatch(ActionGenerator.setIsDataUpdated(true));
       })
       .catch((data) => {
         dispatch(ActionGenerator.setIsLocationCorrect(false));

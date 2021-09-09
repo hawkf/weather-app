@@ -3,7 +3,7 @@ import { useDebounce } from '../../hooks/useDebaunse';
 import { connect } from 'react-redux';
 import { ActionGenerator } from '../../store/action';
 
-const INPUT_DELAY = 500;
+const INPUT_DELAY = 1000;
 
 export function LocationForm({ setLocation, location }) {
   const [locationName, setLocationName] = useState(location);

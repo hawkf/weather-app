@@ -36,6 +36,11 @@ export function reducer(state = initialState, action) {
         ...state,
         isLocationCorrect: action.payload,
       };
+    case ActionType.SET_IS_DATA_UPDATED:
+      return {
+        ...state,
+        isDataUpdated: action.payload,
+      };
     default:
       return state;
   }
