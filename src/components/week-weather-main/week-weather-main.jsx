@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { fetchCoordinates, fetchWeekWeather } from '../../store/api-actions';
 import { ChangeButtons } from '../change-buttons/change-buttons';
 import { ActionGenerator } from '../../store/action';
+import AnimationText from '../animation-text/animation-text';
 
 export function WeekWeatherMain({
   getCoordinates,
@@ -48,19 +49,23 @@ export function WeekWeatherMain({
       <ChangeButtons isDay={false} />
       <LocationForm />
       <section className='result-information'>
-        <h2 className='result-information__title'>{locationName}</h2>
-        <ul className='result-information__list'>
-          {weekWeathers.map((item, index) => {
-            return (
-              <ResultInformationDay
-                key={index}
-                temperature={item.temperature}
-                description={item.description}
-                date={item.date}
-              />
-            );
-          })}
-        </ul>
+        <AnimationText isRevertAnimation={true}>
+          <h2 className='result-information__title'>{locationName}</h2>
+        </AnimationText>
+        <AnimationText isRevertAnimation={true}>
+          <ul className='result-information__list'>
+            {weekWeathers.map((item, index) => {
+              return (
+                <ResultInformationDay
+                  key={index}
+                  temperature={item.temperature}
+                  description={item.description}
+                  date={item.date}
+                />
+              );
+            })}
+          </ul>
+        </AnimationText>
       </section>
     </main>
   );

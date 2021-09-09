@@ -6,6 +6,7 @@ import { fetchCoordinates, fetchWeekWeather } from '../../store/api-actions';
 import { useEffect } from 'react';
 import { ChangeButtons } from '../change-buttons/change-buttons';
 import { ActionGenerator } from '../../store/action';
+import AnimationText from '../animation-text/animation-text';
 
 export function DayWeatherMain({
   getCoordinates,
@@ -49,14 +50,18 @@ export function DayWeatherMain({
       <ChangeButtons isDay={true} />
       <LocationForm />
       <section className='result-information'>
-        <h2 className='result-information__title'>{locationName}</h2>
-        <ul className='result-information__list'>
-          <ResultInformationDay
-            temperature={weekWeathers[0].temperature}
-            description={weekWeathers[0].description}
-            date={weekWeathers[0].date}
-          />
-        </ul>
+        <AnimationText isRevertAnimation={true}>
+          <h2 className='result-information__title'>{locationName}</h2>
+        </AnimationText>
+        <AnimationText isRevertAnimation={true}>
+          <ul className='result-information__list'>
+            <ResultInformationDay
+              temperature={weekWeathers[0].temperature}
+              description={weekWeathers[0].description}
+              date={weekWeathers[0].date}
+            />
+          </ul>
+        </AnimationText>
       </section>
     </main>
   );
