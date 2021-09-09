@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export function ResultInformationDay({ temperature, description, date }) {
   return (
@@ -9,3 +10,9 @@ export function ResultInformationDay({ temperature, description, date }) {
     </li>
   );
 }
+
+ResultInformationDay.propTypes = {
+  temperature: PropTypes.number,
+  description: PropTypes.string,
+  date: PropTypes.string,
+};

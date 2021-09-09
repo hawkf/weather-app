@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { AppRoute } from '../../utils/const';
+import PropTypes from 'prop-types';
 
 export function ChangeButtons({ isDay }) {
   const history = useHistory();
@@ -33,3 +34,7 @@ export function ChangeButtons({ isDay }) {
     </div>
   );
 }
+
+ChangeButtons.propTypes = {
+  isDay: PropTypes.bool,
+};

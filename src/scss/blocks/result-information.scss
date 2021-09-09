@@ -12,6 +12,11 @@
   list-style: none;
   margin: 0;
   padding: 0;
+
+  @media (max-width: 540px) {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .result-information__title {
@@ -39,6 +44,10 @@
   margin-top: 0;
   margin-bottom: 20px;
   margin-right: 10px;
+
+  @media (max-width: 540px) {
+    margin-right: 0;
+  }
 }
 
 .result-information__description {
@@ -53,4 +62,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  margin: 0;
+  padding: 0;
 }
