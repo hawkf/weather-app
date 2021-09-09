@@ -1,5 +1,5 @@
-import React, { FunctionComponent, RefObject, PropsWithChildren } from 'react';
-import { useSpring, a, SpringHandle, config } from 'react-spring';
+import React from 'react';
+import { useSpring, a, config } from 'react-spring';
 
 const AnimationText = ({
   isRevertAnimation,
